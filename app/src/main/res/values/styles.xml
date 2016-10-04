@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/coupons_orange</item>
+        <item name="colorPrimaryDark">@color/coupons_orange</item>
+        <item name="colorAccent">@color/coupons_orange</item>
+        <item name="android:statusBarColor">@color/deep_blue</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+
+    <!--作者：xiaoxiao Mi-->
+    <!--链接：https://www.zhihu.com/question/31468556/answer/52165454-->
+    <!--来源：知乎-->
+    <!--著作权归作者所有，转载请联系作者获得授权。-->
+    <!--作者：xiaoxiao Mi-->
+    <!--链接：https://www.zhihu.com/question/31468556/answer/52165454-->
+    <!--来源：知乎-->
+    <!--著作权归作者所有，转载请联系作者获得授权。-->
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/coupons_orange</item>
+        <item name="colorPrimaryDark">@color/coupons_orange</item>
+        <item name="colorAccent">@color/coupons_orange</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+    <style name="AppTheme1" parent="AppBaseTheme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    </style>
+
+    <style name="DrawerLayoutTheme" parent="AppTheme1">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
