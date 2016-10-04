@@ -60,7 +60,7 @@ public class MainFragment extends Fragment {
         container = (RelativeLayout) view.findViewById(R.id.container);
         screenHight = getResources().getDisplayMetrics().heightPixels;
         minActionDis = screenHight / 4;
-        params.height = screenHight / 5;
+        params.height = screenHight / 6;
         title.setLayoutParams(params);
         lv.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, new String[]{
                 "1",
@@ -159,24 +159,27 @@ public class MainFragment extends Fragment {
                         if (moveY - downY > minSlop) {//下滑
                             disY = (int) (moveY - downY);
                             totalScrollDis += disY;
+                            scrollDirection = "down";
                             if (totalScrollDis > minActionDis) {
-                                scrollDirection = "down";
                                 disY = disY * 10 / 10;
                                 if (container.getPaddingTop() < 0) {
                                     int paddingTop = container.getPaddingTop() + disY;
-                                    if (paddingTop > 0)
+                                    if (paddingTop >= 0)
                                         paddingTop = 0;
                                     container.setPadding(container.getPaddingLeft(), paddingTop, container.getPaddingRight(), container.getPaddingBottom());
                                 }
                             }
                         } else if (downY - moveY > minSlop) {//上滑
                             disY = (int) (moveY - downY);
-                            disY = disY * 8 / 10;
+                            disY = disY * 5 / 10;
                             scrollDirection = "up";
                             if (container.getPaddingTop() > (-screenHight / 6)) {
                                 int paddingTop = container.getPaddingTop() + disY;
-                                if (paddingTop < -screenHight / 6)
-                                    paddingTop = -screenHight / 6;
+                                if (paddingTop <= -screenHight / 6)
+                                    {
+                                        paddingTop = -screenHight / 6;
+                                        totalScrollDis=0;
+                                    }
                                 container.setPadding(container.getPaddingLeft(), paddingTop, container.getPaddingRight(), container.getPaddingBottom());
                             }
                         }
@@ -202,7 +205,7 @@ public class MainFragment extends Fragment {
                             showFuntions = true;
                             totalScrollDis = 0;
                         }
-                    }).setDirection(600).setDirection(4).animate();
+                    }).setDuration(600).setDirection(4).animate();
 
                 }
                 if (scrollDirection.equals("up") && scrollState == SCROLL_STATE_IDLE && showFuntions) {
@@ -211,7 +214,7 @@ public class MainFragment extends Fragment {
                         public void onAnimationEnd(Animation animation) {
                             showFuntions = false;
                         }
-                    }).setDirection(600).setDirection(4).animate();
+                    }).setDuration(600).setDirection(4).animate();
 
                 }
             }
