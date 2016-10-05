@@ -1,9 +1,11 @@
 package com.youarenotin;
 
+import android.icu.math.BigDecimal;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,7 +56,7 @@ public class MainFragment extends Fragment {
 
 
         minSlop = ViewConfiguration.getTouchSlop();
-        View title = view.findViewById(R.id.titleBar);
+        final View title = view.findViewById(R.id.titleBar);
         lv = (ListView) view.findViewById(R.id.lv);
         ViewGroup.LayoutParams params = title.getLayoutParams();
         container = (RelativeLayout) view.findViewById(R.id.container);
@@ -167,6 +169,10 @@ public class MainFragment extends Fragment {
                                     if (paddingTop >= 0)
                                         paddingTop = 0;
                                     container.setPadding(container.getPaddingLeft(), paddingTop, container.getPaddingRight(), container.getPaddingBottom());
+                                    float alpha =1 - (float)(( 1.0*container.getPaddingTop() / (-screenHight / 6)));
+                                    if (alpha<=0.3)
+                                        alpha= (float) 0.3;
+                                    title.setAlpha(alpha);
                                 }
                             }
                         } else if (downY - moveY > minSlop) {//上滑
@@ -175,12 +181,18 @@ public class MainFragment extends Fragment {
                             scrollDirection = "up";
                             if (container.getPaddingTop() > (-screenHight / 6)) {
                                 int paddingTop = container.getPaddingTop() + disY;
-                                if (paddingTop <= -screenHight / 6)
-                                    {
-                                        paddingTop = -screenHight / 6;
-                                        totalScrollDis=0;
-                                    }
+                                if (paddingTop <= -screenHight / 6) {
+                                    paddingTop = -screenHight / 6;
+                                    totalScrollDis = 0;
+                                }
                                 container.setPadding(container.getPaddingLeft(), paddingTop, container.getPaddingRight(), container.getPaddingBottom());
+                                float alpha =1 - (float)(( 1.0*container.getPaddingTop() / (-screenHight / 6)));
+                                if (alpha<=0.3)
+                                    alpha= (float) 0.3;
+                                title.setAlpha(alpha);
+//                                Log.d("分母", String.valueOf(1.0*container.getPaddingTop()));
+//                                Log.d("分母", String.valueOf((-screenHight / 6)));
+//                                Log.d("alpha", String.valueOf(1 - (float)(( 1.0*container.getPaddingTop() / (-screenHight / 6)))));
                             }
                         }
                         downY = moveY;
@@ -230,3 +242,4 @@ public class MainFragment extends Fragment {
         this.buttons = rl;
     }
 }
+
